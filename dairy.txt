@@ -1,6 +1,6 @@
 ——此篇不仅用于上交的学习日志，更作为自己复习资料使用——
 2017/4/5
-开始学习git的使用
+本地git的使用：
 git init：命令把这个目录变成Git可以管理的仓库
 
 git add xxxx.xxx：添加文件到暂存区
@@ -39,7 +39,46 @@ rm xxxx.xxx: 删除工作区内的文件
 robotv1.0  robotv2.0  robotv3.0…………robotv999.0此类…….对于较为复杂的程序应该会有不错的效果，明日继续
 另外：….只学了这么几个功能就有这么多语句，不知道以后还会有多少= =，希望在基于应用软件上的git优化会做的简单一些
 
+ 
 
+2017/4/6
+github的应用：
+在github上可以建立远程库，在这个库上可以实现clone到本地，或者将本地库上传到github
+git remote add origin https://github.com/lzy9506/learngit.git：将本地库与github上的名为 “learngit” 的远程库关联
+git push -u origin master: 将本地库推送到远程库
+注意：实际上是将本地的master分支推送到github的master分支（有疑问，对于库与分支的概念尚未十分清晰，当前来看只是在本地库执行命令，推送到github上新建的远程库，尚未与分支有联系）
+
+git clone https://github.com/lzy9506/learngit.git：从远程库clone到本地
+
+
+分支的学习：
+查看分支：git branch
+
+创建分支：git branch <name>
+
+切换分支：git checkout <name>
+注意：与之前的git checkout – xxxx.xxx（撤销操作） 区分清楚
+
+创建+切换分支：git checkout -b <name>
+
+合并某分支到当前分支：git merge <name>
+注意：在合并分支时，如果两个分支在同一位置有不同的内容，则会产生冲突，需要手动改成理想的版本然后提交，之后记得删除测试分支
+删除分支：git branch -d <name>
+小结：本地分支的建立、修改与合并较为简单
+
+  
+
+ 
+
+注意：在分支的合并上有两种方式：
+默认的 “git merge <name>” 是 fast forward 模式，在合并后将测试分支删除后无法看到测试分支的历史记录
+
+“git merge --no-ff -m "merge with no-ff" dev”: 不利用ff模式，在删除测试分支后仍可看到测试分支的历史记录
+
+git log --graph --pretty=oneline --abbrev-commit： 此指令用于查看分支的情况
+注意：与 “git log”(查看工作日志)相区分
+
+小结：今日学习主要为分支的创建与应用，从理论角度上来讲的确有利于多人协作或是单人测试，但是还是未能理解到实际如何应用，有待继续学习
 
 
        
