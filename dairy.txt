@@ -39,7 +39,7 @@ rm xxxx.xxx: 删除工作区内的文件
 robotv1.0  robotv2.0  robotv3.0…………robotv999.0此类…….对于较为复杂的程序应该会有不错的效果，明日继续
 另外：….只学了这么几个功能就有这么多语句，不知道以后还会有多少= =，希望在基于应用软件上的git优化会做的简单一些
 
- 
+
 
 2017/4/6
 github的应用：
@@ -52,6 +52,7 @@ git clone https://github.com/lzy9506/learngit.git：从远程库clone到本地
 
 
 分支的学习：
+ 
 查看分支：git branch
 
 创建分支：git branch <name>
@@ -67,8 +68,9 @@ git clone https://github.com/lzy9506/learngit.git：从远程库clone到本地
 小结：本地分支的建立、修改与合并较为简单
 
   
-
+--no-ff 模式下的merge
  
+Fast forward 模式下的merge
 
 注意：在分支的合并上有两种方式：
 默认的 “git merge <name>” 是 fast forward 模式，在合并后将测试分支删除后无法看到测试分支的历史记录
@@ -86,4 +88,34 @@ git log --graph --pretty=oneline --abbrev-commit： 此指令用于查看分支�
 
       
 
+2017/4/7
+今日继续本地分支的学习：
 
+Bug分支：
+当在dev分支上处理任务时，如若需要处理master分支上的bug，可用 “git stash” 命令将dev分支上的工作内容先保存下来，切回到master分支，利用 “git checkout issue-101” 命令建立新的bug分支，将bug消除后，合并回master分支。
+然后切换回dev分支，利用 “git stash apply” 命令将dev分支恢复到之前的工作状态。
+
+git stash: 将当前分支工作状态保存
+注意：此时用 “git status” 命令查看仓库工作区内无内容
+git apply: 将暂存的分支内容恢复
+git stash drop: 将之前暂存的分支内容删除
+git stash pop: 将暂存分支内容恢复并删除
+git stash list: 查看暂存分支内容
+ 
+由上图可见，可多次stash当前内容，在stash list中会显示多次暂存的内容，可选择恢复
+注意：经过测试发现，在dev分支上将内容暂存之后，回到master分支修改bug，add 然后 commit，此时回到dev分支上将暂存内容回复，之前对于master上bug的修改并不会跟随到dev上，必须经过一次merge后才能达到一致！
+ 
+Dev上的暂存内容
+
+ 
+master上的bug修复
+ 
+合并后的master内容
+
+
+
+小结：在做分支工作时候一定要细心。。。分支上修改完成后如果没有add 和 commit，那么相当于没做，指令一定要记清楚，因为输错指令和没有commit真是出了各种各样的麻烦，好歹最后整明白了，虽然东西不多，但是开始逐渐理解git的应用思路，对于版本管理的确是利器，还是比较期待在ccs上的应用。
+
+
+先到这儿了，最近毕设碰到了瓶颈…工作量稍大可能进度比较慢老师莫见怪= =
+（此外本篇dairy已经推送到github上的远程库中，随时更新）
